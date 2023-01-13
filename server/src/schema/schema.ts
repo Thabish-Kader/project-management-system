@@ -20,7 +20,7 @@ const ClientType = new GraphQLObjectType({
 });
 
 const ProjectType = new GraphQLObjectType({
-	name: "Client",
+	name: "Projects",
 	fields: {
 		id: { type: GraphQLID },
 		name: { type: GraphQLString },
@@ -92,6 +92,7 @@ const mutation = new GraphQLObjectType({
 
 const schema = new GraphQLSchema({
 	query: RootQuery,
+	mutation,
 });
 
 export default schema;
