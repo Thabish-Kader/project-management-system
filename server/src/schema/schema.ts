@@ -1,6 +1,7 @@
 import {
 	GraphQLID,
 	GraphQLList,
+	GraphQLNonNull,
 	GraphQLObjectType,
 	GraphQLSchema,
 	GraphQLString,
@@ -61,6 +62,29 @@ const RootQuery = new GraphQLObjectType({
 			type: new GraphQLList(ProjectType),
 			resolve(parent, args) {
 				return ProjectModel.find();
+			},
+		},
+	},
+});
+
+// mutations
+const mutation = new GraphQLObjectType({
+	name: "Mutation",
+	fields: {
+		addClient: {
+			type: ClientType,
+			args: {
+				name: { type: GraphQLNonNull(GraphQLString) },
+				email: { type: GraphQLNonNull(GraphQLString) },
+				phone: { type: GraphQLNonNull(GraphQLString) },
+			},
+			resolve(parent, args) {
+				const client = new ClientModel({
+					name: args.name,
+					email: args.email,
+					phone: args.phone,
+				});
+				return client.save();
 			},
 		},
 	},
