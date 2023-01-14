@@ -166,7 +166,19 @@ const mutation = new GraphQLObjectType({
 						},
 					}),
 				},
-				clientId: { type: GraphQLNonNull(GraphQLID) },
+			},
+			resolve(parent, args) {
+				return ProjectModel.findByIdAndUpdate(
+					args.id,
+					{
+						$set: {
+							name: args.name,
+							description: args.description,
+							status: args.status,
+						},
+					},
+					{ new: true }
+				);
 			},
 		},
 	},
