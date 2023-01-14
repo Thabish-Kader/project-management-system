@@ -9,7 +9,6 @@ import {
 } from "graphql";
 import ClientModel from "../models/Client";
 import ProjectModel from "../models/Project";
-import { resolve } from "path";
 
 const ClientType = new GraphQLObjectType({
 	name: "Client",
