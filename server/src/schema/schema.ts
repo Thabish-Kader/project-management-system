@@ -1,4 +1,5 @@
 import {
+	GraphQLEnumType,
 	GraphQLID,
 	GraphQLList,
 	GraphQLNonNull,
@@ -8,6 +9,7 @@ import {
 } from "graphql";
 import ClientModel from "../models/Client";
 import ProjectModel from "../models/Project";
+import { resolve } from "path";
 
 const ClientType = new GraphQLObjectType({
 	name: "Client",
@@ -85,6 +87,86 @@ const mutation = new GraphQLObjectType({
 					phone: args.phone,
 				});
 				return client.save();
+			},
+		},
+		// delete client
+		deleteClient: {
+			type: ClientType,
+			args: {
+				id: { type: GraphQLNonNull(GraphQLID) },
+			},
+			resolve(parent, { id }) {
+				return ClientModel.findByIdAndRemove(id);
+			},
+		},
+		// add project
+		addProject: {
+			type: ProjectType,
+			args: {
+				name: { type: GraphQLNonNull(GraphQLString) },
+				description: { type: GraphQLNonNull(GraphQLString) },
+				status: {
+					type: new GraphQLEnumType({
+						name: "ProjectStatus",
+						values: {
+							new: {
+								value: "Not Started",
+							},
+							progress: {
+								value: "In Progress",
+							},
+							completed: {
+								value: "Completed",
+							},
+						},
+					}),
+					defaultValue: "Not Started",
+				},
+				clientId: { type: GraphQLNonNull(GraphQLID) },
+			},
+			resolve(parent, { name, description, status, clientId }) {
+				const project = new ProjectModel({
+					name,
+					description,
+					status,
+					clientId,
+				});
+				return project.save();
+			},
+		},
+		// delete project
+		deleteProject: {
+			type: ProjectType,
+			args: {
+				id: { type: GraphQLNonNull(GraphQLID) },
+			},
+			resolve(parent, args) {
+				return ProjectModel.findByIdAndRemove(args.id);
+			},
+		},
+		//update project
+		updateProject: {
+			type: ProjectType,
+			args: {
+				name: { type: GraphQLNonNull(GraphQLString) },
+				description: { type: GraphQLNonNull(GraphQLString) },
+				status: {
+					type: new GraphQLEnumType({
+						name: "ProjectStatusUpdated",
+						values: {
+							new: {
+								value: "Not Started",
+							},
+							progress: {
+								value: "In Progress",
+							},
+							completed: {
+								value: "Completed",
+							},
+						},
+					}),
+				},
+				clientId: { type: GraphQLNonNull(GraphQLID) },
 			},
 		},
 	},
