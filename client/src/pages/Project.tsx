@@ -3,6 +3,8 @@ import { GET_PROJECT } from "../queries/projectQueries";
 import { Link, useParams } from "react-router-dom";
 import { Spinner } from "../components/Spinner";
 import { ClientInfo } from "../components/ClientInfo";
+import { DeleteProjectButton } from "../components/DeleteProjectButton";
+import { UpdateProjectForm } from "../components/UpdateProjectForm";
 
 export const Project = () => {
 	const { id } = useParams();
@@ -30,8 +32,8 @@ export const Project = () => {
 					<p className="lead">{data?.project.status}</p>
 
 					<ClientInfo client={data?.project.client} />
-					{/* <DeleteProjectButton projectId={data?.project.id!} />
-					<EditProjectForm project={data?.project!} />  */}
+					<DeleteProjectButton projectId={data?.project.id!} />
+					<UpdateProjectForm project={data?.project!} />
 				</div>
 			)}
 		</>
