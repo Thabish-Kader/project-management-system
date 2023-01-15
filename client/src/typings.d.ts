@@ -4,3 +4,11 @@ type TClient = {
 	email: string;
 	phone: string;
 };
+
+type TProject = {
+	id: string;
+	name: string;
+	status: string;
+	description: string;
+	client: TClient;
+};
