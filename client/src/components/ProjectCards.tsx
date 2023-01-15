@@ -6,21 +6,23 @@ type Props = {
 
 export const ProjectCard = ({ project }: Props) => {
 	return (
-		<div className="card col">
-			<div className="card-header fw-bold">{project.name}</div>
-			<div className="card-body">
-				<blockquote className="blockquote mb-0">
-					<p>{project.description}</p>
+		<div className="col-md-6">
+			<div className="card mb-3">
+				<div className="card-body">
 					<div className="d-flex justify-content-between alighn-tems-center">
-						<p className="fs-6 fw-bolder">{project.status}</p>
-						<Link
-							className="btn btn-info"
-							to={`/projects/${project.id}`}
+						<h5 className="card-title">{project.name}</h5>
+
+						<a
+							className="btn btn-light"
+							href={`/projects/${project.id}`}
 						>
 							View
-						</Link>
+						</a>
 					</div>
-				</blockquote>
+					<p className="small">
+						Status <strong>{project.status}</strong>
+					</p>
+				</div>
 			</div>
 		</div>
 	);
