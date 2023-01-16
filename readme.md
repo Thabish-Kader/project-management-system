@@ -12,3 +12,5 @@
 <img align="left" alt="graphql" width="30px" style="padding-right:10px;" src="https://www.vectorlogo.zone/logos/graphql/graphql-icon.svg" />
 <br/>
 <br/>
+
+A simple CRUD project created to learn the fundamentals of graphql.
