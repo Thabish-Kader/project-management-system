@@ -14,3 +14,9 @@
 <br/>
 
 A simple CRUD project created to learn the fundamentals of graphql.
+
+### Screenshots
+
+<img width="1156" alt="Screenshot 2023-01-17 at 10 15 14 AM" src="https://user-images.githubusercontent.com/76642519/212823740-7a46d5c4-eea5-4813-9e76-723bdea38bba.png">
+
+<img width="1256" alt="Screenshot 2023-01-17 at 10 16 15 AM" src="https://user-images.githubusercontent.com/76642519/212823757-184cbf59-bfb0-4ac9-bc75-e50b70038869.png">
